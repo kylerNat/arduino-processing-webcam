@@ -1,7 +1,7 @@
 arduino-processing-webcam
 =========================
 
-an online webcam using arduino and processing
+An online webcam using arduino and processing
 
 Server:
   The server recieves camera orientations from clients and sends the orientations to a serial port and to all of the clients.
