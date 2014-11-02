@@ -16,12 +16,12 @@ void refreshGraphics(){
       line(width*0.1, i*(height*0.8)/15.0+height*0.1, width*0.9, i*(height*0.8)/15.0+height*0.1);
     }
     text(nf(x*2.0/15.0, 1, 2) + "pi, " + nf(y*2.0/15.0, 1, 2) + "pi", width/2.0, height*0.05);
-    ellipse(x*(width*0.8)/15.0+width*0.1, -y*(height*0.8)/15.0+height*0.9, 10, 10);
+    ellipse(x*(width*0.8)/15.0+width*0.1, y*(height*0.8)/15.0+height*0.1, 10, 10);
 }
 
 void setup(){
   size(1000, 1000);//the size of the window
-  client = new Client(this, "10.0.1.11", 5204);//the ip and port
+  client = new Client(this, "2601:9:6580:da:1958:5110:441d:82d8", 5204);//the ip and port
   f = createFont("Arial", 16, true);
   refreshGraphics();
 }
@@ -39,7 +39,7 @@ void draw(){
 }
 
 void mousePressed(){ 
-  byte a = (byte)(round((mouseX-width*0.1)*15.0/(width*0.8))<<4 | round((height*0.9-mouseY)*15.0/(height*0.8)));
+  byte a = (byte)(round((mouseX-width*0.1)*15.0/(width*0.8))<<4 | round((mouseY-height*0.1)*15.0/(height*0.8)));
   client.write(a);
   x = (a >> 4) & 0x0F;//need to mask to get rid of signs
   y = a & 0x0F;
