@@ -3,6 +3,7 @@ import processing.serial.*;
 Server server;
 Serial serial_port;
 byte data;
+boolean sent = false;
 
 void setup(){
   server = new Server(this, 5204);//the port
@@ -17,5 +18,14 @@ void draw(){
     data = (byte)client.readChar();
     server.write(data);
     serial_port.write(data);
+  }
+  if((millis()/5000)%2==1){
+    if(!sent){
+      server.write(data);
+      sent = true;
+    }
+  }
+  else{
+    sent = false;
   }
 }
